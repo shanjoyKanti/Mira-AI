@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+<script>/*sso-accept-v2*/
+(function(){
+  try{
+    var m=(location.hash||'').match(/[#&]sso=([^&]+)/);
+    if(m){
+      var s=m[1].replace(/-/g,'+').replace(/_/g,'/'); while(s.length%4)s+='=';
+      var d=JSON.parse(decodeURIComponent(escape(atob(s))));
+      if(d&&d.a){
+        localStorage.setItem('access_token',d.a);
+        if(d.r)localStorage.setItem('refresh_token',d.r);
+        if(d.u)localStorage.setItem('user',typeof d.u==='string'?d.u:JSON.stringify(d.u));
+        if(d.ent)localStorage.setItem('codsy_entitlement',d.ent);
+        localStorage.removeItem('persist:root');
+        location.replace('/dashboard');
+        return;
+      }
+    }
+  }catch(e){}
+  try{
+    var ent=localStorage.getItem('codsy_entitlement'); if(!ent) return;
+    var p=ent.split('.')[0].replace(/-/g,'+').replace(/_/g,'/'); while(p.length%4)p+='=';
+    var b=JSON.parse(decodeURIComponent(escape(atob(p))));
+    function show(){
+      if(document.getElementById('codsy-ent-badge'))return;
+      var el=document.createElement('div'); el.id='codsy-ent-badge';
+      el.style.cssText='position:fixed;bottom:14px;right:14px;z-index:99999;background:#12131b;border:1px solid rgba(124,58,237,.5);color:#e5e7eb;border-radius:999px;padding:7px 14px;font:12px/1.2 system-ui,sans-serif;box-shadow:0 8px 30px rgba(0,0,0,.5)';
+      el.innerHTML='<span style="color:#a78bfa;font-weight:700">Codsy</span> &middot; '+(b.plan||'free')+' &middot; '+Number(b.remaining||0).toLocaleString()+' tokens left';
+      (document.body||document.documentElement).appendChild(el);
+    }
+    if(document.body) show(); else document.addEventListener('DOMContentLoaded',show);
+  }catch(e){}
+})();
+</script>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Mira AI - Legacy software modernization platform. Analyze, upgrade and modernize your codebase." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>MIRA AI - Legacy Software Modernization Platform</title>
+    <script defer src="/umami/script.js" data-website-id="864f94d0-78b9-4198-9878-80a6134ff781"></script>
+    <script type="module" crossorigin src="/assets/index-CtDtySrF.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C7ZYBIdS.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

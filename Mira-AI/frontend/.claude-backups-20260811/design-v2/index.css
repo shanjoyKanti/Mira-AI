@@ -1,0 +1,381 @@
+@import "tailwindcss";
+
+/* Tailwind v4 theme registration — REQUIRED for primary-* utilities
+   (bg-primary-50, border-primary-500, from-primary-600, …) to compile.
+   Variables here are also emitted as CSS custom properties, so the
+   hand-written .btn/.card rules below can keep using var(--color-…). */
+@theme {
+  --color-primary-50: #f0f9ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+
+  /* Brand secondary (violet) — pairs with primary in the logo gradient */
+  --color-brand-violet: #6d28d9;
+  --color-brand-violet-light: #8b5cf6;
+
+  /* Technical/mono typography (deck-style): file paths, versions, metrics */
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Motion tokens: spring for transforms, fast-out for opacity/colors */
+  --ease-spring: linear(0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 0.938, 1.077 20.4%, 1.121, 1.149 24.3%, 1.159, 1.163 27%, 1.154, 1.017 43.1%, 0.991, 0.977 51%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1);
+  --ease-out-fast: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-900: #111827;
+}
+
+/* Tailwind v4 defaults border-color to currentColor; restore the v3-style
+   neutral default so bare `border` utilities render hairlines, while still
+   letting explicit border-color utilities (border-white/10 …) win. */
+@layer base {
+  *, ::before, ::after {
+    border-color: var(--color-gray-200);
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  /* Soft off-white with a faint brand tint instead of flat white */
+  background:
+    radial-gradient(1200px 500px at 85% -10%, rgba(14,165,233,0.06), transparent 60%),
+    radial-gradient(900px 400px at -10% 0%, rgba(124,58,237,0.05), transparent 55%),
+    #fafbfc;
+  color: var(--color-gray-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────── */
+.btn-primary,
+.btn-secondary,
+.btn-outline,
+.btn-danger,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: box-shadow 200ms ease, transform 150ms var(--ease-out-fast), filter 200ms ease,
+              background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+/* Visible keyboard focus for every button variant (WCAG 2.4.7) */
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-outline:focus-visible,
+.btn-danger:focus-visible,
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.btn-primary:active:not(:disabled),
+.btn-secondary:active:not(:disabled),
+.btn-outline:active:not(:disabled),
+.btn-danger:active:not(:disabled),
+.btn-ghost:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  /* Solid accent, used like punctuation (Refactoring UI / Geist). The brand
+     gradient survives only on the landing hero CTA (.cta-animated). */
+  background-color: var(--color-primary-600);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  box-shadow: 0 1px 2px rgba(16,24,40,0.10);
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--color-primary-700);
+  box-shadow: 0 2px 6px rgba(16,24,40,0.12);
+}
+
+.btn-secondary {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-900);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-gray-200);
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: var(--color-gray-200);
+  box-shadow: 0 2px 6px rgba(16,24,40,0.06);
+}
+
+.btn-outline {
+  background-color: #ffffff;
+  color: #374151;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-gray-300);
+}
+.btn-outline:hover:not(:disabled) {
+  border-color: var(--color-primary-400);
+  color: var(--color-primary-700);
+  background-color: var(--color-primary-50);
+}
+
+.btn-danger {
+  background-color: #dc2626;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  box-shadow: 0 1px 2px rgba(220,38,38,0.25);
+}
+.btn-danger:hover:not(:disabled) {
+  background-color: #b91c1c;
+  box-shadow: 0 4px 12px rgba(220,38,38,0.25);
+}
+.btn-danger:focus-visible {
+  outline-color: #dc2626;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: #4b5563;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+}
+.btn-ghost:hover:not(:disabled) {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-900);
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled,
+.btn-outline:disabled,
+.btn-danger:disabled,
+.btn-ghost:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Button sizes */
+.btn-sm { padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+.btn-md { padding: 0.5rem 1rem; font-size: 1rem; }
+.btn-lg { padding: 0.75rem 1.25rem; font-size: 1.125rem; }
+
+/* ── Inputs ──────────────────────────────────────────────────────────── */
+.input-field {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-gray-300);
+  border-radius: 0.5rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+  background: #ffffff;
+}
+.input-field:hover {
+  border-color: #94a3b8;
+}
+.input-field:focus,
+.input-field:focus-visible {
+  box-shadow: 0 0 0 4px rgba(14,165,233,0.12);
+  border-color: var(--color-primary-500);
+}
+.input-field[aria-invalid="true"] {
+  border-color: #ef4444;
+}
+.input-field[aria-invalid="true"]:focus {
+  box-shadow: 0 0 0 4px rgba(239,68,68,0.12);
+  border-color: #ef4444;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────── */
+/* Hairline border + shadow-sm recipe (Vercel/Refactoring UI elevation
+   ladder): static surfaces sit low; only true overlays get big shadows. */
+.card {
+  background: #ffffff;
+  border: 1px solid var(--color-gray-200);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(16,24,40,0.05);
+  transition: box-shadow 150ms ease, border-color 150ms ease;
+}
+.card-interactive {
+  cursor: pointer;
+}
+.card-interactive:hover {
+  border-color: var(--color-primary-300);
+  box-shadow: 0 1px 3px rgba(16,24,40,0.07), 0 4px 12px rgba(16,24,40,0.06);
+}
+
+/* ── Technical chrome (presentation-inspired) ────────────────────────── */
+/* Subtle engineering dot-grid, fades out toward the bottom */
+.bg-dots {
+  background-image: radial-gradient(rgba(2,132,199,0.10) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 55%, transparent 100%);
+}
+
+/* Uppercase mono micro-label chip ("// section-tag" style from the deck) */
+.chip-mono {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-primary-700);
+  background: rgba(14,165,233,0.08);
+  border: 1px solid rgba(14,165,233,0.25);
+  border-radius: 6px;
+  padding: 0.25rem 0.6rem;
+}
+
+/* Static brand gradient text (animated version further below) */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-primary-600), #6d28d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Landing / app animations ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes blinkCaret {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+@keyframes pulseSoft {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(14,165,233,0.35); }
+  50%      { box-shadow: 0 0 0 10px rgba(14,165,233,0); }
+}
+@keyframes shimmerSweep {
+  100% { transform: translateX(100%); }
+}
+@keyframes shimmerBg {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+@keyframes scanGlow {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 0.9; }
+}
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.96) translateY(6px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Dropdown / dialog entrance */
+.pop-in {
+  animation: popIn 160ms var(--ease-out-fast) both;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms ease, transform 700ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animated gradient headline */
+.gradient-text-animated {
+  background: linear-gradient(90deg, #0284c7, #6d28d9, #0ea5e9, #0284c7);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* Animated gradient CTA band */
+.cta-animated {
+  background: linear-gradient(120deg, #2563eb, #4f46e5, #7c3aed, #2563eb);
+  background-size: 300% 100%;
+  animation: gradientShift 10s ease infinite;
+}
+
+.float-slow { animation: floatY 5s ease-in-out infinite; }
+
+/* Code demo window */
+.code-demo-line {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.14rem 0.9rem;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  white-space: pre;
+  transition: background 400ms ease;
+}
+.code-demo-line .ln { color: #475569; width: 1.2rem; text-align: right; flex-shrink: 0; user-select: none; }
+.code-demo-line.upgrading {
+  background: linear-gradient(90deg, rgba(14,165,233,0.16), rgba(124,58,237,0.12));
+  animation: scanGlow 0.9s ease infinite;
+}
+.code-old  { color: #f87171; }
+.code-new  { color: #4ade80; }
+.code-dim  { color: #cbd5e1; }
+.code-swap-enter { animation: fadeUp 380ms ease; display: inline; }
+
+/* Skeleton shimmer — gradient sweep (transform-only, compositor-cheap) */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #eef2f7;
+}
+.skeleton-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.75), transparent);
+  animation: shimmerSweep 1.6s ease infinite;
+}
+
+/* ── Reduced motion: strip decorative animation, keep content visible ── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .gradient-text-animated,
+  .cta-animated,
+  .float-slow,
+  .code-demo-line.upgrading,
+  .skeleton-shimmer::before,
+  .pop-in { animation: none; }
+  .card, .card-interactive,
+  .btn-primary, .btn-secondary, .btn-outline, .btn-danger, .btn-ghost {
+    transition: none;
+  }
+}

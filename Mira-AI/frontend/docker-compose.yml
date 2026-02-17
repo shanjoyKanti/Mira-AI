@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_BASE_URL=/api/v1
+    container_name: mira-frontend-dev
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    networks:
+      - mira_network
+
+networks:
+  mira_network:
+    external: true
+    name: mira-ai_mira_network
+
+/* Updated by Mohiuzzaman Anik - 2026-04-25 */
