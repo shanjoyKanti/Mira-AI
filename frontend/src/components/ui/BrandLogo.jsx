@@ -25,3 +25,5 @@ export const BrandLogo = ({ to = '/', dark = false, markClass = 'w-8 h-8 text-sm
     </span>
   </Link>
 );
+
+// Dev: Moshiur Rahman - 2026-02-27
