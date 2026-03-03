@@ -28,3 +28,5 @@ export const BrandLogo = ({ to = '/', dark = false, markClass = 'w-8 h-8 text-sm
 
 // Updated by Mohiuzzaman Anik on 2026-07-07
 // Added: New feature implementation
+
+// Dev: Shanjoy Kanti - 2026-03-03
