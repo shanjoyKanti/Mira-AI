@@ -238,3 +238,5 @@ export const REPORT_TYPES = [
     icon: '🔍',
   },
 ];
+
+// Dev: Arafat Uddin - 2026-03-24
