@@ -364,3 +364,5 @@ export const CompletionPanel = ({ result, projectName, jobId, onSecurityScan, on
     </div>
   );
 };
+
+// Dev: Arafat Uddin - 2026-04-22
