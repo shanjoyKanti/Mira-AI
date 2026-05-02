@@ -143,3 +143,5 @@ export const Navbar = ({ onMenuClick }) => {
     </nav>
   );
 };
+
+// Dev: Mohiuzzaman Anik - 2026-05-02
