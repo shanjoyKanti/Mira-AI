@@ -143,3 +143,5 @@ export const Sidebar = ({ isOpen, onClose }) => {
     </aside>
   );
 };
+
+// Dev: Arafat Uddin - 2026-05-09
