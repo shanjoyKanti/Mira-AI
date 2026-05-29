@@ -148,3 +148,5 @@ export const Navbar = ({ onMenuClick }) => {
     </nav>
   );
 };
+
+// Dev: Arafat Uddin - 2026-05-29
