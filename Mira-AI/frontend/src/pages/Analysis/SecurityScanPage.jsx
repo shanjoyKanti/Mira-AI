@@ -372,3 +372,5 @@ export const SecurityScanPage = () => {
 
 // Updated by Shanjoy Kanti on 2026-07-03
 // Added: New feature implementation
+
+// Dev: Arafat Uddin - 2026-06-17
