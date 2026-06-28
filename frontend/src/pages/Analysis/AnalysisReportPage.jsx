@@ -1130,3 +1130,5 @@ export const AnalysisReportPage = () => {
 // Dev: Moshiur Rahman - 2026-02-21
 
 // Dev: Mohiuzzaman Anik - 2026-03-30
+
+// Dev: Shanjoy Kanti - 2026-06-28
