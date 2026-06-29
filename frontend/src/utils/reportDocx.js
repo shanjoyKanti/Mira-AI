@@ -270,3 +270,5 @@ export const generateReportDocx = async (report, projectName) => {
   const project = (projectName || 'project').replace(/\s+/g, '_').toLowerCase();
   saveAs(blob, `${project}_${slug}.docx`);
 };
+
+// Dev: Arafat Uddin - 2026-06-29
