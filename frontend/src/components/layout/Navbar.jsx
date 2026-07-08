@@ -152,3 +152,5 @@ export const Navbar = ({ onMenuClick }) => {
 // Dev: Arafat Uddin - 2026-05-29
 
 // Dev: Moshiur Rahman - 2026-06-28
+
+// Dev: Mohiuzzaman Anik - 2026-07-08
